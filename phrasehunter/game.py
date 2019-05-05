@@ -7,11 +7,13 @@ class Game:
     max_guesses = 5
 
     def __init__(self, phrases):
-        self.phrases = phrases
-        self.current_phrase = Phrase(random.choice(self.phrases))
+        self.phrases = [Phrase(phrase) for phrase in phrases]
+        self.current_phrase = random.choice(self.phrases)
 
     def new_game(self):
-        self.current_phrase = Phrase(random.choice(self.phrases))
+        for phrase in self.phrases:
+            phrase.reset()
+        self.current_phrase = random.choice(self.phrases)
 
     def start_game(self):
         guesses = []
@@ -43,6 +45,8 @@ class Game:
                     else:
                         break
             if '_' not in self.current_phrase.show_phrase():
+                phrase = self.current_phrase.show_phrase()
+                print(phrase)
                 print("Congratulations! You win!")
                 again = input("Would you like to play again? [y]es/[n]o: ")
                 if again.lower().startswith('y'):

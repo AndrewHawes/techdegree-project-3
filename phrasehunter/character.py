@@ -28,6 +28,9 @@ class Character:
         else:
             return '_'
 
+    def reset(self):
+        self.was_guessed = False
+
     @staticmethod
     def validate_char(guess):
         pattern = r'^[a-zA-Z]$'

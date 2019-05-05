@@ -22,3 +22,10 @@ class Phrase:
             if c.check_guess(guess):
                 correct = True
         return correct
+
+    def reset(self):
+        try:
+            for c in self.phrase:
+                c.reset()
+        except Exception:
+            print('"Cannot reset. This is not my sandwich." -- Winston Churchill')
